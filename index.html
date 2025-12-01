@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>定案词条点选系统</title>
+    <title>定案词条点选系统（专业线）V0.01</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.tailwindcss.com?plugins=forms" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -17,6 +18,11 @@
                         primary: '#3B82F6',
                         secondary: '#10B981',
                         neutral: '#64748B',
+                        pink: {
+                            light: '#FBCFE8',
+                            DEFAULT: '#EC4899',
+                            dark: '#BE185D'
+                        },
                         yellow: {
                             light: '#FEF3C7',
                             DEFAULT: '#EAB308',
@@ -37,25 +43,27 @@
                 @apply transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5;
             }
             .category-card {
-                @apply bg-white rounded-xl shadow-md p-3 mb-3 transition-all duration-300 hover:shadow-lg;
+                @apply bg-white rounded-xl shadow-md p-4 mb-4 transition-all duration-300 hover:shadow-lg;
             }
             .column1-card {
-                @apply bg-white rounded-xl shadow-md p-2 mb-2 transition-all duration-300 hover:shadow-lg;
+                @apply bg-white rounded-xl shadow-md p-3 mb-3 transition-all duration-300 hover:shadow-lg;
+                min-height: 120px;
+                width: 100%;
             }
             .selected-btn {
                 @apply bg-primary text-white border-primary;
             }
             .preset-btn {
-                @apply bg-blue-100 hover:bg-blue-200 text-primary py-2 px-4 rounded-lg font-medium btn-hover text-sm;
+                @apply bg-blue-100 hover:bg-blue-200 text-primary py-1.5 px-4 rounded-lg font-medium btn-hover text-sm;
             }
             .yellow-preset-btn {
-                @apply bg-yellow-light hover:bg-yellow text-yellow-dark py-2 px-4 rounded-lg font-medium btn-hover text-sm;
+                @apply bg-yellow-light hover:bg-yellow text-yellow-dark py-1.5 px-4 rounded-lg font-medium btn-hover text-sm;
             }
             .process-btn {
-                @apply px-3 py-2 border border-gray-300 rounded-lg text-sm hover:border-primary btn-hover transition-all duration-200;
+                @apply px-3 py-1.5 border border-gray-300 rounded-lg text-sm hover:border-primary btn-hover transition-all duration-200;
             }
             .dark-yellow-border-btn {
-                @apply px-3 py-2 border border-yellow-dark rounded-lg text-sm hover:border-yellow btn-hover transition-all duration-200;
+                @apply px-3 py-1.5 border border-yellow-dark rounded-lg text-sm hover:border-yellow btn-hover transition-all duration-200;
             }
             .dark-yellow-border-btn.selected-btn {
                 @apply bg-yellow text-white border-yellow;
@@ -72,6 +80,13 @@
             .stain-btn.selected-btn {
                 @apply bg-orange-500 text-white border-orange-500;
             }
+            /* 粉色按钮样式 */
+            .pink-border-btn {
+                @apply px-3 py-1.5 border border-pink-200 text-pink-800 rounded-lg text-sm hover:border-pink-400 btn-hover transition-all duration-200;
+            }
+            .pink-border-btn.selected-btn {
+                @apply bg-pink text-white border-pink;
+            }
             /* 编辑区域高亮样式 */
             .edited-highlight {
                 @apply bg-yellow-50 border border-yellow-200 animate-pulse;
@@ -84,8 +99,8 @@
     <div class="container mx-auto px-4 py-5 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl">
         <!-- 标题区域 -->
         <header class="text-center mb-4">
-            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统V0.21</h1>
-            <p class="text-neutral text-sm">选择工序步骤，生成对应文字并一键复制</p>
+            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统（专业线）V0.01</h1>
+            <p class="text-neutral text-sm">蒸烫湿烫和衬衣的袖线西裤的裤线不用写了</p>
         </header>
         
         <!-- 预设按钮区域 -->
@@ -93,46 +108,39 @@
             <h3 class="font-semibold mb-2 text-gray-700 text-sm">快速预设</h3>
             <div class="flex flex-wrap gap-2">
                 <!-- 程序预设按钮 -->
-                <button class="preset-btn" data-preset="yangpiao60">60℃氧漂</button>
-                <button class="preset-btn" data-preset="yangpiao40">40℃氧漂</button>
-                <button class="preset-btn" data-preset="zhizun40">40℃至尊</button>
-                <button class="preset-btn" data-preset="zhizun30">30℃至尊</button>
                 <button class="preset-btn" data-preset="kuaixi">快洗</button>
-                
+                <button class="preset-btn" data-preset="liangban">丝毛净洗</button>
+                <button class="preset-btn" data-preset="liangbanshou">丝毛净手洗</button>
+
                 <!-- 黄色系预设按钮 -->
                 <button class="yellow-preset-btn" data-preset="silvyixi">四氯乙烯</button>
-                <button class="yellow-preset-btn" data-preset="xiku">西裤</button>
+                <button class="yellow-preset-btn" data-preset="silvyixichuanse">四氯去串色洗</button>
                 <button class="yellow-preset-btn" data-preset="tanqing">碳氢</button>
-                <button class="yellow-preset-btn" data-preset="guiji">硅基</button>
-                
-                <!-- 羽绒服预设按钮 -->
-                <button class="preset-btn" data-preset="down45">羽绒服45℃</button>
-                <button class="preset-btn" data-preset="down40">羽绒服40℃</button>
-                <button class="preset-btn" data-preset="down30">羽绒服30℃</button>
-                <button class="preset-btn" data-preset="dabo60">达播氧漂</button>
-                
                 <!-- 快速文本预设按钮 -->
-                <button class="preset-btn" data-quick-text="zhujiang-workwear">珠江工衣</button>
-                <button class="preset-btn" data-quick-text="yellow-tablecloth">黄色台布</button>
-                <button class="preset-btn" data-preset="bucao">布草</button>
+                <button class="preset-btn" data-quick-text="fangfahui">防发灰</button>
+                <button class="preset-btn" data-quick-text="shuixiyujin">水洗浴巾</button>
             </div>
         </div>
-        
+
         <!-- 主内容区 -->
         <main class="grid grid-cols-1 lg:grid-cols-12 gap-4">
             <!-- 左侧第一列：洗前保护、预去渍、部位、柔顺 -->
-            <div class="lg:col-span-4 space-y-2"></div>
+            <div class="lg:col-span-5 space-y-3">
+                <div id="column1-container"></div>
+            </div>
             
             <!-- 左侧第二列：洗涤、干燥、熨烫 -->
-            <div class="lg:col-span-4 space-y-2"></div>
-            
+            <div class="lg:col-span-3 space-y-3">
+                <div id="column2-container"></div>
+            </div>
+
             <!-- 右侧：结果和复制区 -->
             <div class="lg:col-span-4">
                 <div class="category-card sticky top-4 p-3 max-w-[1400px]">
                     <h2 class="text-base font-semibold mb-2 flex items-center text-gray-700">
                         <i class="fa fa-list-alt text-primary mr-2"></i>生成结果（可编辑）
                     </h2>
-                    
+
                     <div class="mb-2">
                         <textarea id="resultText" class="adaptive-textarea" placeholder="选择工序后显示文字，您可以直接在此编辑..."></textarea>
                         <div class="text-right text-xs text-neutral mt-0.5">
@@ -180,9 +188,7 @@
                     { value: "绑紧", fullName: "绑紧" },
                     { value: "拆毛领", fullName: "拆卸毛领" },
                     { value: "拆皮饰", fullName: "拆卸皮饰" },
-                    { value: "魔术贴", fullName: "贴好魔术贴" },
-                    { value: "进机前包裹纽扣", fullName: "进机前包裹纽扣" },
-                    { value: "测试", fullName: "工艺测试" }
+                    { value: "魔术贴", fullName: "贴好魔术贴" }
                 ]
             },
             {
@@ -195,17 +201,55 @@
                     { value: "避深色", fullName: "避开深色部位" },
                     { value: "神器试色", fullName: "神器试色" }, 
                     { value: "喷涂剂试色", fullName: "喷涂剂试色2h" },
-                    { value: "放不超过30min", fullName: "放置不超过30min" },
-                    { value: "放置不超过4h", fullName: "放置不超过4h" },
-                    { value: "刷洗", fullName: "至尊稀释液软毛刷整体刷洗" },
-                    { value: "1号预涂", fullName: "1号预涂液整体涂" },
-                    { value: "去笔渍", fullName: "T1和神器和去笔渍剂涂笔渍，至尊稀释液刷和揉搓笔渍处" },
-                    { value: "去血渍", fullName: "去血渍剂2号浸泡血渍部位，放置30min" },
-                    { value: "去黄渍", fullName: "喷涂剂喷【黄渍】，放置【1H】" },
+                    { value: "放不超0.5h", fullName: "放置不超过30min" },
+                    { value: "放不超4h", fullName: "放置不超过4h" },
+                    { value: "刷整体", fullName: "至尊稀释液整体刷洗" },
+                    { value: "刷局部", fullName: "至尊稀释液刷洗污渍处" },
+                    { value: "皂液", fullName: "皂液涂【】" },
+                    { value: "1号预涂", fullName: "1号预涂液整体涂，放置1h" },
+                    { value: "T1笔渍", fullName: "T1和神器和去笔渍剂涂笔渍，至尊稀释液刷和揉搓笔渍处" },
+                    { value: "去锈渍", fullName: "除锈剂涂，放置【3min】，漂洗干净" },
                     { value: "至尊浸泡", fullName: "至尊稀释液整体浸泡【15min】" },
                     { value: "水溶性污渍", fullName: "蒸汽吹水溶性污渍", specialStyle: "dark-yellow-border" },
                     { value: "清水刷", fullName: "清水刷涂抹处，漂洗干净", specialStyle: "dark-yellow-border" },
-                    { value: "干洗预涂", fullName: "干洗预涂液涂【】", specialStyle: "dark-yellow-border" }
+                    { value: "干洗预涂", fullName: "干洗预涂液涂【】，放置10min", specialStyle: "dark-yellow-border" }
+                ],
+                subcategories: [
+                    {
+                        category: "亮斑",
+                        items: [
+                            { value: "丝毛净浸泡", fullName: "丝毛净稀释液整体浸泡6h（60℃水配制）", specialStyle: "pink-border" },
+                            { value: "丝毛净烘房泡", fullName: "丝毛净稀释液整体浸泡6h（放置烘房）", specialStyle: "pink-border" },
+                            { value: "丝毛净局部涂", fullName: "丝毛净涂亮斑处，蒸汽高温亮斑处5min，重复操作3次", specialStyle: "pink-border" },
+                            { value: "亮白洗衣液浸泡", fullName: "亮白增艳洗衣液稀释液整体浸泡1h", specialStyle: "pink-border" },
+                            { value: "日晒", fullName: "在阳光下，彩漂原液滴在亮斑处，放置5min，重复操作3次，最多不超过15min", specialStyle: "pink-border" }
+                        ]
+                    },
+                    {
+                        category: "氯漂发黄",
+                        items: [
+                            { value: "氯漂发黄-保险粉", fullName: "保险粉稀释液（1g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" },
+                            { value: "氯漂发黄-亮白洗衣液", fullName: "亮白增艳洗衣液原液涂发黄处，放置2H，再亮白增艳洗衣液稀释液（30g+2L水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" }
+                        ]
+                    },
+                    {
+                        category: "氯漂发红",
+                        items: [
+                            { value: "氯漂发红-喷涂剂", fullName: "喷涂剂整体喷，放置3h", specialStyle: "pink-border" },
+                            { value: "氯漂发红-Targo喷涂剂", fullName: "Targo涂发红处，再喷涂剂喷发红处，放置3h", specialStyle: "pink-border" }
+                        ]
+                    },
+                    {
+                        category: "串色",
+                        items: [
+                            { value: "彩+衣60℃", fullName: "彩+衣稀释液整体浸泡8H（60℃水配制）", specialStyle: "pink-border" },
+                            { value: "彩+衣烘房", fullName: "彩+衣稀释液整体浸泡8H（放置烘房）", specialStyle: "pink-border" },
+                            { value: "白色衣物色渍净", fullName: "白色衣物色渍净稀释液（40g+2L60℃水）整体浸泡1h", specialStyle: "pink-border" },
+                            { value: "保险粉", fullName: "保险粉稀释液（1g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" },
+                            { value: "YellowGo", fullName: "YellowGo稀释液（5g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" },
+                            { value: "四氯去串色", fullName: "四氯乙烯涂串色处，有圈印扩散", specialStyle: "pink-border" },
+                        ]
+                    }
                 ]
             },
             {
@@ -215,32 +259,24 @@
                     { value: "黑渍", fullName: "黑渍", isStain: true },
                     { value: "油渍", fullName: "油渍", isStain: true },
                     { value: "黄渍", fullName: "黄渍", isStain: true },
+                    { value: "血渍", fullName: "血渍", isStain: true },
                     { value: "衣领袖口", fullName: "衣领袖口", isStain: true }
                 ]
             },
             {
                 category: "洗涤",
                 items: [
-                    { value: "60℃氧漂", fullName: "工业水洗机4号程序", isExclusive: true },
-                    { value: "40℃至尊", fullName: "（40℃至尊）工业水洗机13号程序（15kg水洗机+10泵至尊）", isExclusive: true },
-                    { value: "40℃氧漂", fullName: "（40℃氧漂）工业水洗机14号程序（15kg水洗机+10泵至尊+10包彩漂粉）", isExclusive: true },
-                    { value: "30℃至尊", fullName: "工业水洗机10号程序", isExclusive: true },
-                    { value: "快洗", fullName: "家用机快洗程序", isExclusive: true },
+                    { value: "手洗", fullName: "手洗", isExclusive: true }, 
+                    { value: "快洗", fullName: "家用机快洗程序", isExclusive: true },                    
                     { value: "快洗P3", fullName: "家用机快洗程序(P-3)", isExclusive: true },
-                    { value: "40℃机洗", fullName: "工业水洗机1号程序", isExclusive: true },
-                    { value: "30℃机洗", fullName: "工业水洗机10号程序", isExclusive: true },
-                    { value: "45℃羽绒服洗", fullName: "工业水洗机29号程序", isExclusive: true },
-                    { value: "40℃羽绒服洗", fullName: "工业水洗机28号程序", isExclusive: true },
-                    { value: "30℃羽绒服洗", fullName: "工业水洗机16号程序", isExclusive: true },
-                    { value: "海狮10", fullName: "海狮工业水洗机10号程序", isExclusive: true },
+                    { value: "丝毛洗", fullName: "家用机日常洗程序（60℃+丝毛净）", isExclusive: true },
+                    { value: "9#", fullName: "工业水洗机9号程序", isExclusive: true },
                     { value: "湿洗3号", fullName: "伊莱克斯湿洗机-真丝套件程序洗涤", isExclusive: true },
                     { value: "湿洗5号", fullName: "伊莱克斯湿洗机5号程序（蚕丝芯）", isExclusive: true },
                     { value: "四氯乙烯", fullName: "四氯乙烯1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
-                    { value: "四氯快洗", fullName: "四氯乙烯单机快洗", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "碳氢", fullName: "碳氢1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "硅基", fullName: "硅基1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
-                    { value: "褪色单机洗", fullName: "褪色注意单独洗" },
-                    { value: "凑机", fullName: "【凑机】" }
+                    { value: "褪色单机洗", fullName: "褪色注意单独洗" }
                 ]
             },
             {
@@ -259,9 +295,12 @@
                     { value: "室温悬挂", fullName: "室温悬挂" },
                     { value: "室温平铺", fullName: "室温平铺" },
                     { value: "人像机干", fullName: "人像机干燥" },
-                    { value: "吹裤机干燥", fullName: "吹裤机干燥" },
+                    { value: "吹裤机干", fullName: "吹裤机干燥" },
                     { value: "烘干机1#", fullName: "烘干机1号程序" },
-                    { value: "羽绒服干燥", fullName: "烘干机2号程序+烘房悬挂，如有皱褶蒸烫" }
+                    { value: "烘干机1#", fullName: "烘干机1号程序" },
+                    { value: "烘干机4#", fullName: "烘干机1号程序" },
+                    { value: "烘干机5#", fullName: "烘干机5号程序" },
+                    { value: "挂+6#", fullName: "烘房悬挂+烘干机6号程序" }
                 ]
             },
             {
@@ -277,39 +316,20 @@
             }
         ];
 
-        // 存储每个工序类别的内容标识，用于后续替换
-        const categoryIdentifiers = {
-            "洗前保护": "洗前保护内容",
-            "预去渍": "预去渍内容",
-            "部位": "部位内容",
-            "洗涤": "洗涤内容",
-            "柔顺": "柔顺内容",
-            "干燥": "干燥内容",
-            "熨烫": "熨烫内容"
-        };
-
         // 程序预设方案
         const presets = {
-            "yangpiao60": ["60℃氧漂", "湿烫", "袖线"],
-            "yangpiao40": ["测试","40℃氧漂"],
-            "zhizun40": ["测试","40℃至尊"],
-            "zhizun30": ["30℃至尊", "烘房悬挂", "蒸烫"],
-            "kuaixi": ["快洗", "薰衣草","烘房悬挂", "蒸烫"],
-            "silvyixi": ["四氯乙烯", "蒸烫"],
-            "xiku": ["翻面", "四氯乙烯", "蒸烫","裤线"],
-            "tanqing": ["水溶性污渍", "翻面", "细网袋", "碳氢", "蒸烫"],
-            "guiji": ["细网袋", "硅基", "蒸烫"],
-            "dabo60": ["60℃氧漂", "烘干机1#", "蒸烫"],
-            "down45": ["保护拉绳", "保护拉链", "1号预涂", "45℃羽绒服洗", "羽绒服干燥"],
-            "down40": ["保护拉绳", "保护拉链", "1号预涂", "40℃羽绒服洗", "羽绒服干燥"],
-            "down30": ["保护拉绳", "保护拉链", "1号预涂", "30℃羽绒服洗", "羽绒服干燥"],
-            "bucao": ["海狮10", "烘干机1#", "蒸烫"]
+            "kuaixi": ["快洗", "薰衣草", "烘房悬挂"],
+            "silvyixi": ["四氯乙烯"],
+            "silvyixichuanse": ["四氯去串色","四氯乙烯"],
+            "liangban": ["丝毛洗", "薰衣草", "烘房悬挂"],
+            "liangbanshou": ["丝毛净浸泡", "手洗","薰衣草", "烘房悬挂"],
+            "tanqing": ["水溶性污渍", "翻面", "细网袋", "碳氢"]
         };
 
         // 快速文本预设
         const quickTexts = {
-            "zhujiang-workwear": "工业水洗机12号程序（注：不可用⑦号工业机），烘干机1号程序，蒸烫",
-            "yellow-tablecloth": "工业水洗机4号程序。烘干机1号程序，单滚熨烫+熨烫台修褶皱"
+            "fangfahui": "按《QR-8.3-001-1 防发灰衣服关键洗涤操作记录卡》洗涤",
+            "shuixiyujin": "按《水洗浴巾关键洗涤操作记录卡》洗涤"
         };
 
         // 选中项存储
@@ -321,8 +341,8 @@
         processes.forEach(process => categoryContents[process.category] = "");
 
         // DOM元素
-        const column1 = document.querySelector('.lg\\:col-span-4:first-of-type');
-        const column2 = document.querySelector('.lg\\:col-span-4:nth-of-type(2)');
+        const column1Container = document.getElementById('column1-container');
+        const column2Container = document.getElementById('column2-container');
         const resultText = document.getElementById('resultText');
         const copyBtn = document.getElementById('copyBtn');
         const clearBtn = document.getElementById('clearBtn');
@@ -369,12 +389,15 @@
                 const btnContainer = document.createElement('div');
                 btnContainer.className = 'flex flex-wrap gap-2';
 
+                // 渲染主分类按钮
                 process.items.forEach(item => {
                     const btn = document.createElement('button');
                     
                     // 应用特殊样式
                     if (item.specialStyle === "dark-yellow-border") {
                         btn.className = 'dark-yellow-border-btn';
+                    } else if (item.specialStyle === "pink-border") {
+                        btn.className = 'pink-border-btn';
                     } else if (item.isStain) {
                         btn.className = 'stain-btn';
                     } else {
@@ -394,11 +417,56 @@
 
                 card.appendChild(btnContainer);
                 
-                // 根据分类将卡片添加到对应的列
+                // 如果有子分类，渲染子分类
+                if (process.subcategories && process.subcategories.length > 0) {
+                    process.subcategories.forEach(subcategory => {
+                        const subCard = document.createElement('div');
+                        subCard.className = 'mt-3 p-2 bg-gray-50 rounded-lg border border-gray-200';
+                        
+                        const subTitle = document.createElement('h4');
+                        subTitle.className = 'text-xs font-semibold mb-1.5 text-gray-700';
+                        subTitle.textContent = subcategory.category;
+                        subCard.appendChild(subTitle);
+                        
+                        const subBtnContainer = document.createElement('div');
+                        subBtnContainer.className = 'flex flex-wrap gap-2';
+                        
+                        subcategory.items.forEach(item => {
+                            const btn = document.createElement('button');
+                            
+                            // 应用特殊样式
+                            if (item.specialStyle === "dark-yellow-border") {
+                                btn.className = 'dark-yellow-border-btn';
+                            } else if (item.specialStyle === "pink-border") {
+                                btn.className = 'pink-border-btn';
+                            } else if (item.isStain) {
+                                btn.className = 'stain-btn';
+                            } else {
+                                btn.className = 'process-btn';
+                            }
+                            
+                            btn.textContent = item.value;
+                            btn.dataset.value = item.value;
+                            btn.dataset.category = process.category; // 使用主分类作为类别
+                            btn.dataset.subcategory = subcategory.category; // 记录子分类
+                            btn.dataset.isStain = item.isStain ? 'true' : 'false';
+                            btn.dataset.specialStyle = item.specialStyle || '';
+                            btn.dataset.isExclusive = item.isExclusive ? 'true' : 'false';
+
+                            btn.addEventListener('click', () => toggleSelect(process.category, item.value, btn));
+                            subBtnContainer.appendChild(btn);
+                        });
+                        
+                        subCard.appendChild(subBtnContainer);
+                        card.appendChild(subCard);
+                    });
+                }
+                
+                // 根据分类将卡片添加到对应的列容器
                 if (column1Categories.includes(process.category)) {
-                    column1.appendChild(card);
+                    column1Container.appendChild(card);
                 } else if (column2Categories.includes(process.category)) {
-                    column2.appendChild(card);
+                    column2Container.appendChild(card);
                 }
             });
         }
@@ -438,7 +506,7 @@
                 const idx = selectedItems[category].indexOf(value);
                 if (idx === -1) {
                     selectedItems[category].push(value);
-                    if (btn.dataset.specialStyle === "dark-yellow-border") {
+                    if (btn.dataset.specialStyle === "dark-yellow-border" || btn.dataset.specialStyle === "pink-border") {
                         btn.classList.add('selected-btn');
                     } else {
                         btn.classList.add('selected-btn');
@@ -477,7 +545,17 @@
             
             presets[presetKey].forEach(value => {
                 processes.forEach(process => {
-                    const item = process.items.find(i => i.value === value);
+                    // 先查找主分类中的项目
+                    let item = process.items.find(i => i.value === value);
+                    
+                    // 如果在主分类中找不到，查找子分类中的项目
+                    if (!item && process.subcategories) {
+                        for (const subcategory of process.subcategories) {
+                            item = subcategory.items.find(i => i.value === value);
+                            if (item) break;
+                        }
+                    }
+                    
                     if (item) {
                         selectedItems[process.category].push(value);
                         const btn = document.querySelector(`button[data-category="${process.category}"][data-value="${value}"]`);
@@ -583,7 +661,20 @@
             categoryOrder.forEach(category => {
                 const items = [];
                 selectedItems[category].forEach(selectedValue => {
-                    const item = processes.find(p => p.category === category).items.find(i => i.value === selectedValue);
+                    // 先查找主分类中的项目
+                    let item = processes.find(p => p.category === category).items.find(i => i.value === selectedValue);
+                    
+                    // 如果在主分类中找不到，查找子分类中的项目
+                    if (!item) {
+                        const process = processes.find(p => p.category === category);
+                        if (process && process.subcategories) {
+                            for (const subcategory of process.subcategories) {
+                                item = subcategory.items.find(i => i.value === selectedValue);
+                                if (item) break;
+                            }
+                        }
+                    }
+                    
                     if (item) {
                         let fullName = item.fullName;
                         
@@ -688,4 +779,3 @@
     </script>
 </body>
 </html>
-    
