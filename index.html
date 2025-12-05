@@ -98,7 +98,7 @@
     <div class="container mx-auto px-4 py-5 sm:max-w-4xl md:max-w-5xl lg:max-w-7xl xl:max-w-8xl 2xl:max-w-[2600px]">
         <!-- 标题区域 -->
         <header class="text-center mb-4">
-            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统（专业线）V0.02</h1>
+            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统（专业线）V0.04</h1>
             <p class="text-neutral text-sm">蒸烫湿烫和衬衣的袖线西裤的裤线不用写了</p>
         </header>
         
@@ -115,8 +115,9 @@
                 <button class="preset-btn" data-preset="yutujiayong">预涂家用</button>
                 <button class="preset-btn" data-preset="yutukuaixi">预涂快洗</button>
                 <button class="preset-btn" data-preset="shuakuaixi">刷洗快洗</button>
-                <button class="preset-btn" data-preset="liangban">丝毛净洗</button>
-                <button class="preset-btn" data-preset="liangbanshou">丝毛净手洗</button>
+                <button class="preset-btn" data-preset="shixi3">湿洗机3#</button>
+                <button class="preset-btn" data-preset="liangban">亮斑机洗</button>
+                <button class="preset-btn" data-preset="liangbanshou">亮斑手洗</button>
 
                 <!-- 黄色系预设按钮 -->
                 <button class="yellow-preset-btn" data-preset="silvyixi">四氯乙烯</button>
@@ -278,8 +279,8 @@
                     { value: "家用P5", fullName: "家用机【漂洗+脱】程序（P-5）", isExclusive: true },
                     { value: "丝毛洗", fullName: "家用机日常洗程序（60℃+丝毛净）", isExclusive: true },
                     { value: "9#", fullName: "工业水洗机9号程序", isExclusive: true },
-                    { value: "湿洗3号", fullName: "伊莱克斯湿洗机-真丝套件程序洗涤", isExclusive: true },
-                    { value: "湿洗5号", fullName: "伊莱克斯湿洗机5号程序（蚕丝芯）", isExclusive: true },
+                    { value: "湿洗3号", fullName: "伊莱克斯湿洗机3号程序", isExclusive: true },
+                    { value: "湿洗5号", fullName: "伊莱克斯湿洗机5号程序", isExclusive: true },
                     { value: "四氯乙烯", fullName: "四氯乙烯1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "碳氢", fullName: "碳氢1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "硅基", fullName: "硅基1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
@@ -331,12 +332,13 @@
         const presets = {
             "kuaixi": ["快洗", "薰衣草", "烘房悬挂"],
             "sezishouxi": ["喷涂剂整体", "至尊浸泡","薰衣草泡","手洗","烘房悬挂"],
-            "sezijiayong": ["神器","可见污渍", "喷涂剂整体","至尊浸泡","薰衣草","家用P5","烘房悬挂"],
-            "sezikuaixi": ["喷涂剂整体", "至尊浸泡","薰衣草","快洗","烘房悬挂"],
+            "sezijiayong": ["神器","可见污渍", "喷涂剂整体","刷局部","薰衣草","家用P5","烘房悬挂"],
+            "sezikuaixi": ["喷涂剂整体", "刷局部","薰衣草","快洗","烘房悬挂"],
             "yutushouxi": [ "神器","可见污渍","至尊浸泡","薰衣草泡","手洗","烘房悬挂"],
-            "yutujiayong": ["神器","可见污渍","至尊浸泡","薰衣草","家用P5","烘房悬挂"],
-            "yutukuaixi": [ "神器","可见污渍","至尊浸泡","薰衣草","快洗","烘房悬挂"],
+            "yutujiayong": ["神器","可见污渍","刷局部","薰衣草","家用P5","烘房悬挂"],
+            "yutukuaixi": [ "神器","可见污渍","刷局部","薰衣草","快洗","烘房悬挂"],
             "shuakuaixi": ["喷涂剂整体喷","刷整体", "至尊浸泡","薰衣草","家用P5","烘房悬挂"],
+            "shixi3": ["湿洗3号","烘房悬挂"],
             "silvyixiyutu": ["干洗预涂","衣领袖口","翻面","四氯乙烯"],
             "silvyixi": ["四氯乙烯"],
             "silvyixichuanse": ["四氯去串色","四氯乙烯"],
