@@ -98,7 +98,7 @@
     <div class="container mx-auto px-4 py-5 sm:max-w-4xl md:max-w-5xl lg:max-w-7xl xl:max-w-8xl 2xl:max-w-[2600px]">
         <!-- 标题区域 -->
         <header class="text-center mb-4">
-            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统（专业线）V0.05</h1>
+            <h1 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-2">定案词条点选系统（专业线）V0.06</h1>
             <p class="text-neutral text-sm">蒸烫湿烫和衬衣的袖线西裤的裤线不用写了</p>
         </header>
         
@@ -119,6 +119,7 @@
                 <button class="preset-btn" data-preset="shixi5">湿洗机5#</button>
                 <button class="preset-btn" data-preset="liangban">亮斑机洗</button>
                 <button class="preset-btn" data-preset="liangbanshou">亮斑手洗</button>
+                <button class="preset-btn" data-preset="caxi">擦洗</button>
 
                 <!-- 黄色系预设按钮 -->
                 <button class="yellow-preset-btn" data-preset="silvyixi">四氯乙烯</button>
@@ -275,6 +276,7 @@
                 category: "洗涤",
                 items: [                    
                     { value: "手洗", fullName: "手洗", isExclusive: true }, 
+                    { value: "擦洗", fullName: "至尊稀释液擦洗，清水擦洗", isExclusive: true }, 
                     { value: "快洗", fullName: "家用机快洗程序", isExclusive: true },                    
                     { value: "快洗P3", fullName: "家用机快洗程序(P-3)", isExclusive: true },
                     { value: "家用P5", fullName: "家用机【漂洗+脱】程序（P-5）", isExclusive: true },
@@ -332,6 +334,7 @@
         // 程序预设方案
         const presets = {
             "kuaixi": ["快洗", "薰衣草", "烘房悬挂"],
+            "caxi": [ "擦洗", "薰衣草", "烘房悬挂"],
             "sezishouxi": ["喷涂剂整体", "至尊浸泡","薰衣草泡","手洗","烘房悬挂"],
             "sezijiayong": ["神器","可见污渍", "喷涂剂整体","刷局部","薰衣草","家用P5","烘房悬挂"],
             "sezikuaixi": ["喷涂剂整体", "刷局部","薰衣草","快洗","烘房悬挂"],
