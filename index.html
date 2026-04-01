@@ -124,7 +124,6 @@
                 <!-- 黄色系预设按钮 -->
                 <button class="yellow-preset-btn" data-preset="silvyixi">四氯乙烯</button>
                 <button class="yellow-preset-btn" data-preset="silvyixiyutu">四氯预涂</button>
-                <button class="yellow-preset-btn" data-preset="silvyixichuanse">四氯去串色洗</button>
                 <button class="yellow-preset-btn" data-preset="tanqing">碳氢</button>
                 <!-- 快速文本预设按钮 -->
                 <button class="preset-btn" data-quick-text="fangfahui">防发灰</button>
@@ -210,7 +209,7 @@
                     { value: "神器试色", fullName: "神器试色" }, 
                     { value: "喷涂剂试色", fullName: "喷涂剂试色2h" },
                     { value: "放不超0.5h", fullName: "放置不超过30min" },
-                    { value: "放不超6h", fullName: "放置不超过4h" },
+                    { value: "放不超4h", fullName: "放置不超过4h" },
                     { value: "刷整体", fullName: "至尊稀释液整体刷洗" },
                     { value: "刷局部", fullName: "至尊稀释液刷洗污渍处" },
                     { value: "皂液", fullName: "皂液涂【】" },
@@ -254,8 +253,7 @@
                             { value: "彩+衣烘房", fullName: "彩+衣稀释液整体浸泡8H（放置烘房）", specialStyle: "pink-border" },
                             { value: "白色衣物色渍净", fullName: "白色衣物色渍净稀释液（40g+2L60℃水）整体浸泡1h", specialStyle: "pink-border" },
                             { value: "保险粉", fullName: "保险粉稀释液（1g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" },
-                            { value: "YellowGo", fullName: "YellowGo稀释液（5g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" },
-                            { value: "四氯去串色", fullName: "四氯乙烯涂串色处，有圈印扩散", specialStyle: "pink-border" },
+                            { value: "YellowGo", fullName: "YellowGo稀释液（5g+2L60℃水）整体浸泡1H，每30min翻动一次", specialStyle: "pink-border" }
                         ]
                     }
                 ]
@@ -279,11 +277,11 @@
                     { value: "擦洗", fullName: "至尊稀释液擦洗，清水擦洗", isExclusive: true }, 
                     { value: "快洗", fullName: "家用机快洗程序", isExclusive: true },                    
                     { value: "快洗P3", fullName: "家用机快洗程序(P-3)", isExclusive: true },
-                    { value: "家用P5", fullName: "家用机【漂洗+脱】程序（P-5）", isExclusive: true },
+                    { value: "家用漂", fullName: "家用机【漂洗+脱】程序", isExclusive: true },
                     { value: "丝毛洗", fullName: "家用机日常洗程序（60℃+丝毛净）", isExclusive: true },
                     { value: "9#", fullName: "工业水洗机9号程序", isExclusive: true },
-                    { value: "湿洗3号", fullName: "伊莱克斯湿洗机3号程序", isExclusive: true },
-                    { value: "湿洗5号", fullName: "伊莱克斯湿洗机5号程序", isExclusive: true },
+                    { value: "湿洗真丝套件", fullName: "伊莱克斯湿洗机3号程序", isExclusive: true },
+                    { value: "湿洗蚕丝芯", fullName: "伊莱克斯湿洗机5号程序", isExclusive: true },
                     { value: "四氯乙烯", fullName: "四氯乙烯1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "碳氢", fullName: "碳氢1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
                     { value: "硅基", fullName: "硅基1号程序", specialStyle: "dark-yellow-border", isExclusive: true },
@@ -337,16 +335,15 @@
             "caxi": [ "擦洗", "薰衣草", "烘房悬挂"],
             "sezishouxi": ["喷涂剂整体", "至尊浸泡","薰衣草泡","手洗","烘房悬挂"],
             "sezijiayong": ["神器","可见污渍", "喷涂剂整体","刷局部","薰衣草","家用P5","烘房悬挂"],
-            "sezikuaixi": ["喷涂剂整体", "刷局部","薰衣草","快洗","烘房悬挂"],
+            "sezikuaixi": ["喷涂剂整体", "刷局部","薰衣草","快洗P3","烘房悬挂"],
             "yutushouxi": [ "神器","可见污渍","至尊浸泡","薰衣草泡","手洗","烘房悬挂"],
-            "yutujiayong": ["神器","可见污渍","刷局部","薰衣草","家用P5","烘房悬挂"],
+            "yutujiayong": ["神器","可见污渍","刷局部","薰衣草","家用漂","烘房悬挂"],
             "yutukuaixi": [ "神器","可见污渍","刷局部","薰衣草","快洗","烘房悬挂"],
             "shuakuaixi": ["喷涂剂整体喷","刷整体", "至尊浸泡","薰衣草","家用P5","烘房悬挂"],
-            "shixi3": ["湿洗3号","薰衣草","烘房悬挂"],
-            "shixi5": ["湿洗5号","烘房悬挂"],
+            "shixi3": ["湿洗真丝套件","薰衣草","烘房悬挂"],
+            "shixi5": ["湿洗蚕丝芯","烘房悬挂"],
             "silvyixiyutu": ["干洗预涂","衣领袖口","翻面","四氯乙烯"],
             "silvyixi": ["四氯乙烯"],
-            "silvyixichuanse": ["四氯去串色","四氯乙烯"],
             "liangban": ["丝毛洗", "薰衣草", "烘房悬挂"],
             "liangbanshou": ["丝毛净浸泡", "手洗","薰衣草泡", "烘房悬挂"],
             "tanqing": ["水溶性污渍", "翻面", "细网袋", "碳氢"]
